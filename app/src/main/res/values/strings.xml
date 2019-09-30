@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Mutual Funds</string>
+    <string name="Rs">₹</string>
+    <string name="percentage">%</string>
+    <string name="label">Piggy Assignment</string>
+    <string name="hintSearchMess">Search Mutual Funds</string>
+
+</resources>

@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    tools:context=".CompareActivity">
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/table_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="3dp"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="4dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="Fund A : "
+                    android:textSize="16dp"
+                    android:textColor="@color/colorPink"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_name_1"
+                    android:text="Fund Name"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPink"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="3dp"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="4dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="Fund B : "
+                    android:textSize="16dp"
+                    android:textColor="@color/colorPink"
+                    android:layout_marginEnd="4dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_name_2"
+                    android:text="Fund Name"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPink"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+    <TableLayout
+        android:elevation="4dp"
+        android:id="@+id/table_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/ll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <TableRow
+            android:elevation="4dp"
+            android:background="@drawable/custom_shape_row"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:text="Criteria"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_mf1"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:text="Fund A"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_mf2"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="Fund B"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+        </TableRow>
+
+        <TableRow
+            android:elevation="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:text="CATEGORIES"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_st1"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_st2"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+        </TableRow>
+
+        <!--<TableRow-->
+            <!--android:elevation="4dp"-->
+            <!--android:layout_marginBottom="4dp">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="0"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="NAV"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="@color/colorPink"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="3dip" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_nav1"-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Mutual Fund 2"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="@color/colorPink"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:padding="3dip" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_nav2"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Mutual Fund 2"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="@color/colorPink"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:padding="3dip" />-->
+
+        <!--</TableRow>-->
+
+        <TableRow
+            android:elevation="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:text="LAST YEAR"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_l1_1"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_l1_2"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+        </TableRow>
+
+        <TableRow
+            android:elevation="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:text="LAST 3 YEARS"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_l3_1"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_l3_2"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+        </TableRow>
+
+        <TableRow
+            android:elevation="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:text="LAST 5 YEARS"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_l5_1"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:text="Mutual Fund 1"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_l5_2"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+        </TableRow>
+
+        <!--<TableRow-->
+            <!--android:elevation="4dp"-->
+            <!--android:layout_marginBottom="4dp">-->
+
+            <!--<TextView-->
+                <!--android:layout_column="0"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="EXPENSES"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="@color/colorPink"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="3dip" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_exp1"-->
+                <!--android:layout_column="1"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Mutual Fund 2"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="@color/colorPink"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:padding="3dip" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_exp2"-->
+                <!--android:layout_column="2"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Mutual Fund 2"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="@color/colorPink"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:padding="3dip" />-->
+
+        <!--</TableRow>-->
+
+        <TableRow
+            android:elevation="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:text="MINIMUM SUBSCRIPTION"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_min_sub_1"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_min_sub_2"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+        </TableRow>
+
+        <TableRow
+            android:elevation="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:text="RISK"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_risk1"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_risk2"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+        </TableRow>
+
+        <TableRow
+            android:elevation="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:text="RATING"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_rating1"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+            <TextView
+                android:id="@+id/tv_rating2"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="Mutual Fund 2"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/colorPink"
+                android:gravity="center"
+                android:layout_marginEnd="8dp"
+                android:padding="3dip" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>
