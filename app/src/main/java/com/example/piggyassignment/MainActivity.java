@@ -21,6 +21,7 @@ import com.example.piggyassignment.ApiModals2.PostRequestBody;
 import com.example.piggyassignment.ApiModals2.Root2;
 import com.example.piggyassignment.ApiModals2.SearchResult;
 import com.example.piggyassignment.Interface.OnItemClickListener;
+import com.example.piggyassignment.Modals.CheckboxStatus;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvMutualFund;
     MutualFundAdapter mutualFundAdapter;
     public ArrayList<SearchResult> fundComparisonArrayList = new ArrayList<>();
+    public ArrayList<CheckboxStatus> checkboxStatusArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,11 +131,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            @Override
-            public ArrayList<SearchResult> getChecked() {
-                Log.d(TAG, "getChecked: fundComparisonArrayList.size()  " + fundComparisonArrayList.size());
-                return fundComparisonArrayList;
-            }
         });
 
 
@@ -150,15 +147,8 @@ public class MainActivity extends AppCompatActivity {
                 if(fundComparisonArrayList.size() == 2){
                     Intent intent = new Intent(MainActivity.this, CompareActivity.class);
 
-
                     intent.putExtra("mf1", (Serializable) fundComparisonArrayList.get(0));
                     intent.putExtra("mf2", (Serializable) fundComparisonArrayList.get(1));
-
-
-                    //intent.putExtra("id1", fundComparisonArrayList.get(0).getId());
-                    //intent.putExtra("id2", fundComparisonArrayList.get(1).getId());
-                    //intent.putExtra("id1", );
-                    //fundComparisonArrayList.clear();
 
                     startActivity(intent);
                 }
@@ -200,7 +190,12 @@ public class MainActivity extends AppCompatActivity {
                 Root2 root2 = response.body();
                 ArrayList<SearchResult> searchResults = new ArrayList<>(root2.getData().getSearchResults());
                 Log.d(TAG, "onResponse: ##########" + searchResults.size());
-                mutualFundAdapter.updateSearchResults(searchResults);
+
+                for(int i = 0 ; i < searchResults.size() ; i++){
+                    checkboxStatusArrayList.add(new CheckboxStatus(false));
+                }
+
+                mutualFundAdapter.updateSearchResults(searchResults, checkboxStatusArrayList);
             }
 
             @Override

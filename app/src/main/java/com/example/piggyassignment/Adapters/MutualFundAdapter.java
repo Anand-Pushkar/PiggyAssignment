@@ -4,10 +4,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -28,15 +30,11 @@ public class MutualFundAdapter extends RecyclerView.Adapter<MutualFundAdapter.Mu
 
     public static final String TAG = "MutualFundAdapter";
 
-    public int flag;
-    public long id1, id2, id;
 
     private Context context;
     private ArrayList<SearchResult> searchResultArrayList;
     private ArrayList<SearchResult> searchResultsAllArrayList;
-
-    ArrayList<SearchResult> fundComparisonArrayList = new ArrayList<>();
-
+    private ArrayList<CheckboxStatus> checkList = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){
@@ -52,11 +50,12 @@ public class MutualFundAdapter extends RecyclerView.Adapter<MutualFundAdapter.Mu
         Log.d(TAG, "MutualFundAdapter: " + this.searchResultArrayList.size());
     }
 
-    public void updateSearchResults(ArrayList<SearchResult> searchResults){
+    public void updateSearchResults(ArrayList<SearchResult> searchResults, ArrayList<CheckboxStatus> checkboxStatusArrayList){
 
         Log.d(TAG, "updateSearchResults: ");
         this.searchResultArrayList = searchResults;
         this.searchResultsAllArrayList = new ArrayList<>(searchResults);
+        this.checkList = checkboxStatusArrayList;
         notifyDataSetChanged();
 
         Log.d(TAG, "updateSearchResults: " + searchResults.size());
@@ -81,7 +80,7 @@ public class MutualFundAdapter extends RecyclerView.Adapter<MutualFundAdapter.Mu
 
         Log.d(TAG, "onBindViewHolder: ");
 
-        final SearchResult thisResult = searchResultArrayList.get(mutualFundViewHolder.getAdapterPosition());
+        final SearchResult thisResult = searchResultArrayList.get(position);
 
         String yr1, yr3, yr5, min_sub;
 
@@ -97,80 +96,44 @@ public class MutualFundAdapter extends RecyclerView.Adapter<MutualFundAdapter.Mu
         mutualFundViewHolder.tv5yr.setText(yr5);
         mutualFundViewHolder.tvMinimumSubscription.setText(min_sub);
 
+        mutualFundViewHolder.checkBox.setOnCheckedChangeListener(null);
+        mutualFundViewHolder.checkBox.setChecked(checkList.get(position).getChecked());
+        mutualFundViewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mutualFundViewHolder.checkBox.setChecked(isChecked);
+                checkList.get(position).setChecked(isChecked);
+            }
+        });
 
         mutualFundViewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(onItemClickListener != null){
 
-                    boolean checked = mutualFundViewHolder.checkBox.isChecked();
-                    Log.d(TAG, "onClick: " + checked);
-                    boolean enable = onItemClickListener.onItemClick(thisResult , checked);
+                    boolean checked;
+                    checked = checkList.get(position).getChecked();
 
-                    if(!enable){
+                    Log.d(TAG, "onClick: " + checked);
+
+                    boolean enable = onItemClickListener.onItemClick(thisResult, checked);
+
+                    if(enable){
+                        Log.d(TAG, "onClick: checkbox set to : " + enable);
+                        checkList.get(position).setChecked(enable);
+                        mutualFundViewHolder.checkBox.setChecked(enable);
+                    }
+                    else {
+                        Log.d(TAG, "onClick: checkbox set to : " + enable);
+                        checkList.get(position).setChecked(enable);
                         mutualFundViewHolder.checkBox.setChecked(enable);
                     }
 
-                    fundComparisonArrayList = onItemClickListener.getChecked();
-                    if(fundComparisonArrayList.size() == 2){
-                        id1 = fundComparisonArrayList.get(0).getId();
-                        id2 = fundComparisonArrayList.get(1).getId();
-                    }
-                    else if(fundComparisonArrayList.size() == 1){
-                        id = fundComparisonArrayList.get(0).getId();
-                    }
-
-                    Log.d(TAG, "onClick: fundComparisonArrayList.size = " + fundComparisonArrayList.size());
                 }
             }
         });
-
-        if(fundComparisonArrayList.size() == 2){
-            flag = 2;
-        }
-        else if(fundComparisonArrayList.size() == 1){
-            flag = 1;
-        }
-        else {
-            flag = 0;
-        }
     }
 
-    @Override
-    public void onViewRecycled(@NonNull MutualFundViewHolder holder) {
-        super.onViewRecycled(holder);
-
-        SearchResult thisResult = searchResultArrayList.get(holder.getAdapterPosition());
-        //Log.d(TAG, "&&&&&&&&&&&&&&&&& onViewRecycled: holder.getAdapterPosition()" + holder.getAdapterPosition());
-
-        Log.d(TAG, "onViewRecycled: this Result + " + thisResult.getId());
-        Log.d(TAG, "onViewRecycled: " + holder.checkBox.isChecked());
-
-        if(flag == 1) {
-            if (thisResult.getId().equals(id)) {
-                holder.checkBox.setChecked(true);
-                Log.d(TAG, "onViewRecycled: id = " + id);
-                Log.d(TAG, "onViewRecycled: thisResult" + thisResult.getId());
-            } else {
-                holder.checkBox.setChecked(false);
-            }
-        }
-        else if(flag == 2){
-            if(thisResult.getId().equals(id1) || thisResult.getId().equals(id2)){
-                holder.checkBox.setChecked(true);
-                Log.d(TAG, "onViewRecycled: id1 = " + id1);
-                Log.d(TAG, "onViewRecycled: id2 = " + id2);
-                Log.d(TAG, "onViewRecycled: thisResult" + thisResult.getId());
-            }
-            else{
-                holder.checkBox.setChecked(false);
-            }
-        }
-        else{
-            holder.checkBox.setChecked(false);
-        }
-
-    }
 
     @Override
     public int getItemCount() {
@@ -235,6 +198,8 @@ public class MutualFundAdapter extends RecyclerView.Adapter<MutualFundAdapter.Mu
 
         public MutualFundViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            //this.setIsRecyclable(false);
 
             tvMfName = (TextView)itemView.findViewById(R.id.tv_mf_name);
             tvCategory = (TextView)itemView.findViewById(R.id.tv_category);

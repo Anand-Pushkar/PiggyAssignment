@@ -7,5 +7,5 @@ import java.util.ArrayList;
 public interface OnItemClickListener {
 
     boolean onItemClick(SearchResult searchResult , boolean checked);
-    ArrayList<SearchResult> getChecked();
+    //ArrayList<SearchResult> getChecked();
 }
